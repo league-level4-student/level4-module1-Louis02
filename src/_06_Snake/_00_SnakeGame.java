@@ -174,8 +174,9 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 			snake.reset(loc);
 			setFoodLocation();
 			timer.start();
+			break;
 		case 1:
-
+			System.out.println("done");
 		}
 	}
 
