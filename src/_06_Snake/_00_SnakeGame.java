@@ -87,14 +87,18 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// of the game. The smaller the number, the faster it goes.
 		switch (choice) {
 		case "Beginner":
-			timer.setDelay(150);
-		case "Modreate":
-			timer.setDelay(100);
+			timer.setDelay(200);
+			break;
+		case "Moderate":
+			timer.setDelay(170);
+			break;
 		case "Expert":
-			timer.setDelay(50);
+			timer.setDelay(125);
+			break;
 
 		}
 		// 3. start the timer
+
 		timer.start();
 	}
 
@@ -115,15 +119,20 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			snake.setDirection(Direction.UP);
+			break;
 		case KeyEvent.VK_DOWN:
 			snake.setDirection(Direction.DOWN);
+			break;
 		case KeyEvent.VK_LEFT:
 			snake.setDirection(Direction.LEFT);
+			break;
 		case KeyEvent.VK_RIGHT:
 			snake.setDirection(Direction.RIGHT);
+			break;
 		case KeyEvent.VK_SPACE:
 			snake.feed();
-
+			
+			break;
 		}
 		// if an arrow key is pressed, set the snake's
 		// direction accordingly
@@ -173,10 +182,12 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 			Location loc = new Location(WIDTH / 2, HEIGHT / 2);
 			snake.reset(loc);
 			setFoodLocation();
+			snake.setDirection(Direction.RIGHT);
 			timer.start();
 			break;
 		case 1:
 			System.out.println("done");
+			break;
 		}
 	}
 
@@ -193,11 +204,14 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// or if the snake is out of bounds, call gameOver
 		if (snake.isHeadCollidingWithBody() || snake.isOutOfBounds()) {
 			gameOver();
+			System.out.println("              "+snake.getHeadLocation().x+"            " +foodLocation.x);
+		//	System.out.println(foodLocation.x);
 		}
 		// 3. if the location of the head is equal to the location of the food,
 		// feed the snake and set the food location
-		if(snake.getHeadLocation()==foodLocation) {
+		if(snake.getHeadLocation().x==foodLocation.x && snake.getHeadLocation().y==foodLocation.y) {
 			snake.feed();
+			System.out.println("feed");
 			setFoodLocation();
 		}
 		// 4. call panel.repaint();

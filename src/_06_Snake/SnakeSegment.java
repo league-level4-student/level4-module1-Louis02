@@ -7,12 +7,12 @@ public class SnakeSegment {
 	private int size;
 
 	public SnakeSegment(Location loc, int size) {
-		this.location = loc;
+		this.location = new Location(loc.x, loc.y);
 		this.size = size;
 	}
 	
 	public void setLocation(Location loc) {
-		this.location = loc;
+		this.location = new Location(loc.x, loc.y);
 	}
 	
 	public Location getLocation() {
