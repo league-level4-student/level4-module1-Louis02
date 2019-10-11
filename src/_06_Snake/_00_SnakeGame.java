@@ -27,10 +27,9 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 	public static final int WINDOW_SCALE = 50;
 	public static final int WINDOW_WIDTH = WINDOW_SCALE * WIDTH;
 	public static final int WINDOW_HEIGHT = WINDOW_SCALE * HEIGHT;
-
 	private JFrame window;
 	private JPanel panel;
-
+int score = 1;
 	private Snake snake;
 
 	private Timer timer;
@@ -75,6 +74,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 	public void startGame() {
 		// 1. Save the instructions for the game in the following string variable.
+		
 		String instructions = "";
 
 		String[] options = new String[] { "Expert", "Moderate", "Beginner" };
@@ -130,7 +130,8 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 			snake.setDirection(Direction.RIGHT);
 			break;
 		case KeyEvent.VK_SPACE:
-			snake.feed();
+			//snake.feed();
+			
 			
 			break;
 		}
@@ -170,6 +171,8 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		timer.stop();
 		// 2. tell the user their snake is dead
 		JOptionPane.showMessageDialog(null, "Your Snake is Dead");
+		JOptionPane.showMessageDialog(null, "Your score is " + score);
+		score = 1;
 		String[] YesoNo = { "Yes", "No" };
 		// 3. ask them if they want to play again.
 		int input = JOptionPane.showOptionDialog(null, "Do you want to play again?", "Play Again", 0, -1, null, YesoNo,
@@ -205,12 +208,14 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		if (snake.isHeadCollidingWithBody() || snake.isOutOfBounds()) {
 			gameOver();
 			System.out.println("              "+snake.getHeadLocation().x+"            " +foodLocation.x);
+			
 		//	System.out.println(foodLocation.x);
 		}
 		// 3. if the location of the head is equal to the location of the food,
 		// feed the snake and set the food location
-		if(snake.getHeadLocation().x==foodLocation.x && snake.getHeadLocation().y==foodLocation.y) {
+		if(snake.getHeadLocation().equals(foodLocation)) {
 			snake.feed();
+			score++;
 			System.out.println("feed");
 			setFoodLocation();
 		}
