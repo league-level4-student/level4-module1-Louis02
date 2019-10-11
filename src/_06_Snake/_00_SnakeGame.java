@@ -87,10 +87,10 @@ int score = 1;
 		// of the game. The smaller the number, the faster it goes.
 		switch (choice) {
 		case "Beginner":
-			timer.setDelay(200);
+			timer.setDelay(215);
 			break;
 		case "Moderate":
-			timer.setDelay(170);
+			timer.setDelay(190);
 			break;
 		case "Expert":
 			timer.setDelay(125);
